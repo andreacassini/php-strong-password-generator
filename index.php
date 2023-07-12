@@ -16,10 +16,19 @@
 </head>
 
 <body>
-    <form action="/index.php" method="GET">
-        <label for="pass_length">Lunghezza password</label>
-        <input type="text" name="pass_length">
-    </form>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 bg-primary-subtle p-3">
+                <h1 class="text-center">Strong Password Generator</h1>
+                <h2 class="text-center">Genera una password sicura</h2>
+                <form action="/index.php" method="GET" class="bg-light d-flex justify-content-between p-3">
+                    <label for="pass_length">Lunghezza password</label>
+                    <input type="text" name="pass_length" class="me-5">
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
