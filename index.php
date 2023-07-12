@@ -1,5 +1,16 @@
 <?php
+function createPassword($length)
+{
+    $result = '';
+    $password = '';
+    $numbers = '0123456789';
+    $letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $symbols = '!@#$%^&*()';
+}
 
+if (isset($_GET['pass_length'])) {
+    $response = createPassword($_GET['pass_length']);
+}
 ?>
 
 
@@ -21,9 +32,12 @@
             <div class="col-12 bg-primary-subtle p-3">
                 <h1 class="text-center">Strong Password Generator</h1>
                 <h2 class="text-center">Genera una password sicura</h2>
-                <form action="/index.php" method="GET" class="bg-light d-flex justify-content-between p-3">
-                    <label for="pass_length">Lunghezza password</label>
-                    <input type="text" name="pass_length" class="me-5">
+                <form action="index.php" method="GET" class="bg-light p-3">
+                    <div class="d-flex justify-content-between">
+                        <label for="pass_length">Lunghezza password</label>
+                        <input type="number" name="pass_length" id="pass-length" class="me-5 form-control" placeholder="Lunghezza">
+                    </div>
+                    <input type="submit" class="mt-3 btn btn-success">
                 </form>
             </div>
         </div>
