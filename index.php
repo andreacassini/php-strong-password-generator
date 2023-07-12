@@ -1,11 +1,38 @@
 <?php
+
+//FUNZIONA CHE GENERA NUMERO CASUALE CON STRINGHE CONCATENATE IN BASE AL NUMERO INSIERITO
+function randNum($min, $max)
+{
+    return rand($min, $max);
+}
+
+//FUNZIONE CHE GENERA PASSWORD
 function createPassword($length)
 {
+    //VARIABILI
     $result = '';
-    $password = '';
+    $password = ''; //PASSWORD GENERATA
     $numbers = '0123456789';
     $letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $symbols = '!@#$%^&*()';
+
+    $baseString = $letters . $numbers . $symbols;
+
+    //VERIFICA VALIDITA LUNGHEZZA INSERITA
+    if (empty($length)) {
+        $result = 'Nessun parametro valido inserito';
+    } else if ($length < 8 || $length > 32) {
+        $result = 'La lunghezza della password deve essere compresa tra 8 e 32 caratteri';
+    } else {
+        while (strlen($password) < $length) {
+            $index = randNum(0, strlen($baseString) - 1); //INDICE CASUALE COMPRESO TRA 0 E LUNGHEZZA baseString
+            $char = $baseString[$index]; // RECUPERO IL CARATTERE 
+            $password .= $char; //CONCATENO LE STRINGHE
+            //var_dump($password);
+        }
+        return $password;
+    }
+    return $result;
 }
 
 if (isset($_GET['pass_length'])) {
@@ -32,6 +59,11 @@ if (isset($_GET['pass_length'])) {
             <div class="col-12 bg-primary-subtle p-3">
                 <h1 class="text-center">Strong Password Generator</h1>
                 <h2 class="text-center">Genera una password sicura</h2>
+                <?php if (isset($response)) { ?>
+                    <div class="alert alert-info">
+                        <?php echo $response; ?>
+                    </div>
+                <?php } ?>
                 <form action="index.php" method="GET" class="bg-light p-3">
                     <div class="d-flex justify-content-between">
                         <label for="pass_length">Lunghezza password</label>
